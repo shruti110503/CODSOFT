@@ -1,0 +1,68 @@
+/*TASK 1
+
+1. Generate a random number within a specified range, such as 1 to 100.
+
+2. Prompt the user to enter their guess for the generated number.
+
+3. Compare the user's guess with the generated number and provide feedback on whether the guess
+is correct, too high, or too low.
+
+4. Repeat steps 2 and 3 until the user guesses the correct number.
+
+You can incorporate additional details as follows:
+
+5. Limit the number of attempts the user has to guess the number.
+6. Add the option for multiple rounds, allowing the user to play again.
+7. Display the user's score, which can be based on the number of attempts taken or rounds won. */
+
+import java.util.*;
+public class task1{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        Random random=new Random();
+        int min=1,max=100,attempts=0,totalattempts=0,roundswon=0,randomnumber;
+        boolean playagain=true;
+        System.out.println("!! WELCOME TO THE NUMBER GUESSING GAME !!");
+        while(playagain)
+        {
+            randomnumber=random.nextInt(max-min+1)+min;
+            attempts=0;
+            boolean guess=false;
+            System.out.println("\n I have picked a random number between "+min+" and "+max+" Now let's see if you can guess it correctly!");
+            System.out.println("\n !!! LET US BEGIN !!!");
+            while(!guess)
+            {
+                System.out.print("Enter your guess:");
+                int g=sc.nextInt();
+                attempts++;
+                if(g==randomnumber && attempts==1)
+                {
+                System.out.println("Congratulations!! you have guessed the number correctly in"+attempts+"attempt");
+                guess=true;
+                roundswon++;}
+                else if(g==randomnumber && attempts>=1){
+                System.out.println("Congratulations!! you have guessed the number correctly in "+attempts+" attempts");
+                guess=true;
+                roundswon++;
+                }
+                else if(g>randomnumber)
+                System.out.println("TOO HIGH :( TRY AGAIN!");
+                else
+                System.out.println("TOO LOW :(  TRY AGAIN");
+            }
+            totalattempts +=attempts;
+            System.out.print("\nDo you want to play again? (yes/no): ");
+            String playAgainChoice = sc.next().toLowerCase();
+
+            if (!playAgainChoice.equals("yes")) 
+                playagain = false;
+        
+    }
+    System.out.println("\nGame Over!");
+        System.out.println("Total rounds played: " + (roundswon + totalattempts));
+        System.out.println("Total rounds won: " + roundswon);
+        System.out.println("Total attempts made: " + totalattempts);
+        sc.close();
+}
+}
